@@ -2,39 +2,44 @@
 
 <Interface>:
     orientation: 'horizontal'
-    Widget:
+    ImageWithConfig:
         size_hint_x: 0.4
-        canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint_x: 0.6
-        canvas.before:
-            Color:
-                rgba: 1, 0, 1, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        Label:
-            size_hint_y: 0.5
-            text: 'Marketing text here'
-            font_size: 56
-            pos_hint: {'center_x': .5, 'center_y': .5}
+        id: image_promo
+        pos: self.pos
+        size: self.size
+        allow_stretch: True
+        keep_ratio: False
+        source: self.check_path_promo()
+    ImageWithConfig:
+        size_hint_x: .6
+        id: image_bg
+        pos: self.pos
+        size: self.size
+        allow_stretch: True
+        keep_ratio: False
+        source: self.check_path_bg()
         BoxLayout:
-            size_hint_y: 0.5
-            padding: 80
-            spacing: 80
-            Button:
-                size_hint_y: .3
-                text: 'social1'
-                font_size: 48
-            Button:
-                size_hint_y: .3
-                text: 'social1'
-                font_size: 48
+            orientation: 'vertical'
+            size_hint: None, None
+            size: image_bg.size
+            pos: image_bg.pos
+            Label:
+                id: title_main
+                size_hint_y: 0.5
+                text: 'Marketing text here'
+                font_size: 56
+                pos_hint: {'center_x': .5, 'center_y': .5}
+            BoxLayout:
+                size_hint_y: 0.5
+                padding: 80
+                spacing: 80
+                Button:
+                    size_hint_y: .3
+                    text: 'social1'
+                    font_size: 48
+                Button:
+                    size_hint_y: .3
+                    text: 'social1'
+                    font_size: 48
 
 
