@@ -34,16 +34,17 @@ settings_json = json.dumps([
     },
     {
         'type': 'string',
-        'title': 'VKontakte',
-        'desc': 'Insert link to VKontakte page',
-        'section': 'Main',
-        'key': 'vk_link'
-    },
-    {
-        'type': 'string',
         'title': 'Instagram',
         'desc': 'Insert link to Instagram page',
         'section': 'Main',
         'key': 'insta_link'
     },
+    {
+        'type': 'string',
+        'title': 'VKontakte',
+        'desc': 'Insert link to VKontakte page',
+        'section': 'Main',
+        'key': 'vk_link'
+    },
+
 ])

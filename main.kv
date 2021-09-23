@@ -1,4 +1,5 @@
 #:kivy 2.0.0
+#: import ew kivy.uix.effectwidget
 
 <Interface>:
     orientation: 'horizontal'
@@ -23,23 +24,88 @@
             size_hint: None, None
             size: image_bg.size
             pos: image_bg.pos
-            Label:
+            padding: [32,32,32,32]
+            LabelWithConfig:
+#               ---------------
+#                canvas.before:
+#                    Color:
+#                        rgba: 1,0,1,.1
+#                    Rectangle:
+#                        size: self.size
+#                        pos: self.pos
+#               ---------------
                 id: title_main
-                size_hint_y: 0.5
-                text: 'Marketing text here'
-                font_size: 56
-                pos_hint: {'center_x': .5, 'center_y': .5}
-            BoxLayout:
-                size_hint_y: 0.5
-                padding: 80
-                spacing: 80
-                Button:
-                    size_hint_y: .3
-                    text: 'social1'
-                    font_size: 48
-                Button:
-                    size_hint_y: .3
-                    text: 'social1'
-                    font_size: 48
+                markup: True
+                size_hint_y: 0.7
+                text_size: self.size
+                size: root.size
+                text: '[b]{}[/b]' .format(self.check_title())
+                font_size: '48sp'
+                outline_width: 1
+                outline_color: (0,0,0)
+                halign: 'center'
+                valign: 'middle'
+            FloatLayout:
+                size_hint_y: 0.3
+                padding: [40,]
+                SocialButton:
+                    id: btn_inst
+                    on_press: self.open_link_inst()
+                    pos_hint: {'center_x': 0.3 , 'center_y': .5}
+                    SocialStackLayout:
+                        spacing: 48
+                        Image:
+                            source: 'images/social/instagram/color.png'
+                            size_hint_x: None
+                            width: 56
+                        Label:
+                            size_hint_x: None
+                            width: self.width
+                            text: "Инстаграм"
+                            color: 1,1,1,.8
+                SocialButton:
+                    id: btn_vk
+                    on_press: self.open_link_vk()
+                    pos_hint: {'center_x': 0.7 , 'center_y': .5}
+                    canvas.before:
+                        Color:
+                            rgba: .5, .5, .5, 1
+                        Line:
+                            width: 5
+                            RoundedRectangle:
+                                size: self.x, self.y, self.width, self.height
+                    SocialStackLayout:
+                        Image:
+                            source: 'images/social/vkontakte/color.png'
+                            size_hint_x: None
+                            width: 56
+                        Label:
+                            size_hint_x: None
+                            width: self.width
+                            text: "Вконтакте"
+                            color: 1,1,1,.8
+
+
+<SocialButton>:
+    markup: True
+    background_color: 0,0,0,0
+    background_normal: ''
+    size_hint: None, None
+    size: 400,112
+    canvas.before:
+        Color:
+            rgba: (0.8,0.8,0.8,.65)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [24,]
+
+<SocialStackLayout@StackLayout>:
+    pos: self.parent.pos
+    size: self.parent.size
+    orientation: 'lr-tb'
+    padding: [24,]
+    spacing: 48
+
 
 
