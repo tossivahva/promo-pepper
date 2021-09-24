@@ -1,10 +1,7 @@
 import kivy
-from kivy.config import Config
-# Icon
-Config.set('kivy', 'window_icon', 'images/ico/gob-icn.ico')
-
 import webbrowser
 from kivy.app import App
+from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
 from settings_json import settings_json
@@ -15,10 +12,9 @@ from kivy.uix.button import Button
 kivy.require('2.0.0')
 
 # Set ratio
-Window.size = (1920, 1080)
-
-# Run fullscreen
-Window.maximize()
+Window.size = (1920 / 2, 1080 / 2)
+Config.set('kivy', 'window_icon', 'images/ico/gob-icn.ico')
+Config.set('graphics', 'fullscreen', 'auto')
 
 
 # Change Images
