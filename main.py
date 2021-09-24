@@ -1,4 +1,8 @@
 import kivy
+from kivy.config import Config
+# Icon
+Config.set('kivy', 'window_icon', 'images/ico/gob-icn.ico')
+
 import webbrowser
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -13,16 +17,9 @@ kivy.require('2.0.0')
 # Set ratio
 Window.size = (1920, 1080)
 
-
-# Mac
-# Window.size = (1400, 800)
-
-
 # Run fullscreen
-# Window.fullscreen = 'auto'
-# Or
-# Window.fullscreen = True
-# Window.borderless = False
+Window.maximize()
+
 
 # Change Images
 class ImageWithConfig(Image):
@@ -71,6 +68,7 @@ class MainApp(App):
 
     def build(self):
         # Load config, remove default
+        self.title = 'GoB Promo'
         self.use_kivy_settings = False
         self.config.items('Promo', 'Main')
         # Bind key action
@@ -105,8 +103,8 @@ class MainApp(App):
         self.root.ids.image_promo.check_path_promo()
         self.root.ids.image_bg.check_path_bg()
         self.root.ids.title_main.check_title()
-        # self.root.ids.btn_inst.check_btn_inst()
-        # self.root.ids.btn_vk.check_btn_vk()
+        self.root.ids.btn_inst.check_btn_inst()
+        self.root.ids.btn_vk.check_btn_vk()
 
 
 if __name__ == '__main__':
