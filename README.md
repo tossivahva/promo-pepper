@@ -1,7 +1,7 @@
-#About
+## About
 
 Simple promotional app for computer clubs, that show users club offers and promotions.
 
-#Usage
+## Usage
 
 App developed for bound usage with Gizmo Software
