@@ -29,5 +29,5 @@ standalone program without **Autorun** options.
 
 ## License
 
-This project is licensed under the [Apache License
-                           Version 2.0](https://github.com/tossivahva/gizmo-promo-pop/blob/master/LICENSE).
+This project is licensed under the
+[Apache License Version 2.0](https://github.com/tossivahva/gizmo-promo-pop/blob/master/LICENSE).
