@@ -6,7 +6,6 @@ from kivy.config import Config
 
 Config.set('kivy', 'window_icon', 'source/gob_icon.ico')
 Config.set('graphics', 'window_state', 'maximized')
-
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from settings_json import settings_json
@@ -63,6 +62,10 @@ class Interface(BoxLayout):
 
 class MainApp(App):
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.root_path = pathlib.Path(__file__).parent.parent.resolve()
+
     def build(self):
         # Load config, remove default
         self.title = 'GoB Promo'
@@ -73,11 +76,11 @@ class MainApp(App):
     # Custom settings
     def build_config(self, config):
         config.setdefaults('Promo', {
-            'promo_path': pathlib.Path(__file__).parent.resolve(),
+            'promo_path': self.root_path,
         })
         config.setdefaults('Main', {
             'title_main': 'GoB Promotional title',
-            'bg_path': pathlib.Path(__file__).parent.resolve(),
+            'bg_path': self.root_path,
             'insta_link': 'www.instagram.com/',
             'vk_link': 'www.vk.com/'
         })
