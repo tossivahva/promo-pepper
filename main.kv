@@ -44,30 +44,34 @@
                 padding: [0,40,0,40]
                 Widget:
                     size_hint_x: .1
-#                SocialButton:
-#                    id: btn_disc
-#                    on_press: self.open_link_discord()
-#                    pos_hint: {'center_x': 0.3 , 'center_y': .5}
-#                    canvas.before:
-#                        Color:
-#                            rgba: (114/255,137/255,218/255,1)
-#                        RoundedRectangle:
-#                            pos: self.pos
-#                            size: self.size
-#                            radius: [16,]
-#                    SocialStackLayout:
-#                        spacing: 40
-#                        Image:
-#                            source: 'source/discord_icon.png'
-#                            size_hint_x: None
-#                            size: 40, 40
-#                        Label:
-#                            size_hint_x: None
-#                            width: 90
-#                            text: "Discord"
-#                            font_size: 32
-#                            bold: True
-#                            color: 1,1,1,1
+                SocialButton:
+                    id: btn_disc
+                    on_press: self.open_link_disc()
+                    pos_hint: {'center_x': 0.3 , 'center_y': .5}
+                    canvas.before:
+                        Color:
+                            rgba: (114/255,137/255,218/255,1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [16,]
+                    SocialStackLayout:
+                        spacing: 40
+                        Widget:
+                            size_hint_x: .08
+                        Image:
+                            source: 'source/discord_icon.png'
+                            size_hint_x: None
+                            size: 40, self.height
+                        Label:
+                            size_hint_x: None
+                            width: self.width
+                            text: "Discord"
+                            font_size: 32
+                            bold: True
+                            color: 1,1,1,1
+                        Widget:
+                            size_hint_x: .12
                 SocialButton:
                     id: btn_inst
                     on_press: self.open_link_inst()
@@ -81,17 +85,21 @@
                             radius: [16,]
                     SocialStackLayout:
                         spacing: 40
+                        Widget:
+                            size_hint_x: .08
                         Image:
                             source: 'source/instagram_icon.png'
                             size_hint_x: None
-                            size: 40, 40
+                            size: 40, self.height
                         Label:
                             size_hint_x: None
-                            width: 90
+                            width: self.width
                             text: "Instagram"
                             font_size: 32
                             bold: True
                             color: 1,1,1,1
+                        Widget:
+                            size_hint_x: .12
                 SocialButton:
                     id: btn_vk
                     on_press: self.open_link_vk()
@@ -105,19 +113,23 @@
                             radius: [16,]
                     SocialStackLayout:
                         spacing: 40
+                        Widget:
+                            size_hint_x: .08
                         Image:
                             source: 'source/vkontakte_icon.png'
                             size_hint_x: None
-                            size: 40, 40
+                            size: 40, self.height
                             allow_stretch: False
                             keep_ratio: True
                         Label:
                             bold: True
                             size_hint_x: None
-                            width: 90
+                            width: self.width
                             text: "Vkontakte"
                             font_size: 32
                             color: 1,1,1,1
+                        Widget:
+                            size_hint_x: .12
                 Widget:
                     size_hint_x: .1
 
@@ -126,11 +138,12 @@
     markup: True
     background_color: 1,1,1,0
     background_normal: ''
-    size_hint: None , None
-    size: 480, 100
-
+    size_hint: 1 , None
+    size: self.texture_size
+    height: 100
+    valign: 'top'
+    halign: 'right'
 <SocialStackLayout@BoxLayout>:
     orientation: 'horizontal'
     pos: self.parent.pos
     size: self.parent.size
-    padding: [124, 24, 124, 24]

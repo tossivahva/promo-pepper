@@ -17,21 +17,27 @@ from kivy.resources import resource_add_path, resource_find
 kivy.require('2.0.0')
 
 
+def return_settings_json(key, value):
+    result = App.get_running_app().config.get(key, value)
+    return result
+
+
 # Change Images
 class ImageWithConfig(Image):
+
     def check_path_promo(self):
-        self.source = App.get_running_app().config.get('Promo', 'promo_path')
+        self.source = return_settings_json('Promo', 'promo_path')
         return self.source
 
     def check_path_bg(self):
-        self.source = App.get_running_app().config.get('Main', 'bg_path')
+        self.source = return_settings_json('Main', 'bg_path')
         return self.source
 
 
 # Change Title
 class LabelWithConfig(Label):
     def check_title(self):
-        self.text = App.get_running_app().config.get('Main', 'title_main')
+        self.text = return_settings_json('Main', 'title_main')
         return self.text
 
 
@@ -40,18 +46,18 @@ class SocialButton(Button):
 
     def __init__(self, **kwargs):
         super(SocialButton, self).__init__(**kwargs)
-        self.instagram_link = App.get_running_app().config.get('Main', 'insta_link')
-        self.vkontakte_link = App.get_running_app().config.get('Main', 'vk_link')
-        self.discord_link = App.get_running_app().config.get('Main', 'disc_link')
+        self.instagram_link = return_settings_json('Main', 'insta_link')
+        self.vkontakte_link = return_settings_json('Main', 'vk_link')
+        self.discord_link = return_settings_json('Main', 'disc_link')
 
     def check_btn_inst(self):
-        self.instagram_link = App.get_running_app().config.get('Main', 'insta_link')
+        self.instagram_link = return_settings_json('Main', 'insta_link')
 
     def check_btn_vk(self):
-        self.vkontakte_link = App.get_running_app().config.get('Main', 'vk_link')
+        self.vkontakte_link = return_settings_json('Main', 'vk_link')
 
     def check_btn_disc(self):
-        self.discord_link = App.get_running_app().config.get('Main', 'disc_link')
+        self.discord_link = return_settings_json('Main', 'disc_link')
 
     def open_link_inst(self):
         webbrowser.open(self.instagram_link)
@@ -59,7 +65,7 @@ class SocialButton(Button):
     def open_link_vk(self):
         webbrowser.open(self.vkontakte_link)
 
-    def open_link_discord(self):
+    def open_link_disc(self):
         webbrowser.open(self.discord_link)
 
 
@@ -83,14 +89,14 @@ class MainApp(App):
     # Custom settings
     def build_config(self, config):
         config.setdefaults('Promo', {
-            'promo_path': self.root_path,
+            'promo_path': 'source/promo_default.jpg',
         })
         config.setdefaults('Main', {
             'title_main': 'GoB Promotional title',
-            'bg_path': self.root_path,
-            'disc_link': 'www.discord.com/',
-            'insta_link': 'www.instagram.com/',
-            'vk_link': 'www.vk.com/'
+            'bg_path': 'source/background_default.jpg',
+            'disc_link': 'https://discord.com',
+            'insta_link': 'https://www.instagram.com',
+            'vk_link': 'https://vk.com'
         })
 
     def build_settings(self, settings):
@@ -100,7 +106,7 @@ class MainApp(App):
                                 )
 
     def on_config_change(self, config, section, key, value):
-        # Chek data on config change
+        # Chek Global config change
         self.root.ids.image_promo.check_path_promo()
         self.root.ids.image_bg.check_path_bg()
         self.root.ids.title_main.check_title()
