@@ -1,20 +1,21 @@
 import kivy
 import webbrowser
-from kivy.app import App
+import os, sys
+import pathlib
 from kivy.config import Config
+
+Config.set('kivy', 'window_icon', 'source/gob_icon.ico')
+Config.set('graphics', 'window_state', 'maximized')
+
+from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.core.window import Window
 from settings_json import settings_json
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.resources import resource_add_path, resource_find
 
 kivy.require('2.0.0')
-
-# Set ratio
-Window.size = (1920 / 2, 1080 / 2)
-Config.set('kivy', 'window_icon', 'images/ico/gob-icn.ico')
-Config.set('graphics', 'fullscreen', 'auto')
 
 
 # Change Images
@@ -67,25 +68,18 @@ class MainApp(App):
         self.title = 'GoB Promo'
         self.use_kivy_settings = False
         self.config.items('Promo', 'Main')
-        # Bind key action
-        Window.bind(on_keyboard=self.key_action)
         return Interface()
-
-    # Shortcut for settings
-    def key_action(self, window, key, scancode, codepoint, modifier):
-        if modifier == ['shift'] and codepoint == 'm':
-            self.open_settings()
 
     # Custom settings
     def build_config(self, config):
         config.setdefaults('Promo', {
-            'promo_path': '...',
+            'promo_path': pathlib.Path(__file__).parent.resolve(),
         })
         config.setdefaults('Main', {
-            'title_main': '',
-            'bg_path': '...',
-            'insta_link': 'instagram.com/',
-            'vk_link': 'vk.com/'
+            'title_main': 'GoB Promotional title',
+            'bg_path': pathlib.Path(__file__).parent.resolve(),
+            'insta_link': 'www.instagram.com/',
+            'vk_link': 'www.vk.com/'
         })
 
     def build_settings(self, settings):
@@ -104,4 +98,6 @@ class MainApp(App):
 
 
 if __name__ == '__main__':
+    if hasattr(sys, '_MEIPASS'):
+        resource_add_path(os.path.join(sys._MEIPASS))
     MainApp().run()
