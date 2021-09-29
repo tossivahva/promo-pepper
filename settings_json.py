@@ -46,5 +46,12 @@ settings_json = json.dumps([
         'section': 'Main',
         'key': 'vk_link'
     },
+    {
+        'type': 'string',
+        'title': 'Discord',
+        'desc': 'Insert link to Discord',
+        'section': 'Main',
+        'key': 'disc_link'
+    },
 
 ])

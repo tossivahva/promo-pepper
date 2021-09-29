@@ -1,7 +1,7 @@
 import kivy
-import webbrowser
 import os, sys
 import pathlib
+import webbrowser
 from kivy.config import Config
 
 Config.set('kivy', 'window_icon', 'source/gob_icon.ico')
@@ -42,6 +42,7 @@ class SocialButton(Button):
         super(SocialButton, self).__init__(**kwargs)
         self.instagram_link = App.get_running_app().config.get('Main', 'insta_link')
         self.vkontakte_link = App.get_running_app().config.get('Main', 'vk_link')
+        self.discord_link = App.get_running_app().config.get('Main', 'disc_link')
 
     def check_btn_inst(self):
         self.instagram_link = App.get_running_app().config.get('Main', 'insta_link')
@@ -49,11 +50,17 @@ class SocialButton(Button):
     def check_btn_vk(self):
         self.vkontakte_link = App.get_running_app().config.get('Main', 'vk_link')
 
+    def check_btn_disc(self):
+        self.discord_link = App.get_running_app().config.get('Main', 'disc_link')
+
     def open_link_inst(self):
         webbrowser.open(self.instagram_link)
 
     def open_link_vk(self):
         webbrowser.open(self.vkontakte_link)
+
+    def open_link_discord(self):
+        webbrowser.open(self.discord_link)
 
 
 class Interface(BoxLayout):
@@ -81,6 +88,7 @@ class MainApp(App):
         config.setdefaults('Main', {
             'title_main': 'GoB Promotional title',
             'bg_path': self.root_path,
+            'disc_link': 'www.discord.com/',
             'insta_link': 'www.instagram.com/',
             'vk_link': 'www.vk.com/'
         })
@@ -98,6 +106,7 @@ class MainApp(App):
         self.root.ids.title_main.check_title()
         self.root.ids.btn_inst.check_btn_inst()
         self.root.ids.btn_vk.check_btn_vk()
+        self.root.ids.btn_disc.check_btn_disc()
 
 
 if __name__ == '__main__':

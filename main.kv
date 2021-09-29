@@ -44,30 +44,30 @@
                 padding: [0,40,0,40]
                 Widget:
                     size_hint_x: .1
-                SocialButton:
-                    id: btn_disc
-                    on_press: self.open_link_inst()
-                    pos_hint: {'center_x': 0.3 , 'center_y': .5}
-                    canvas.before:
-                        Color:
-                            rgba: (114/255,137/255,218/255,1)
-                        RoundedRectangle:
-                            pos: self.pos
-                            size: self.size
-                            radius: [16,]
-                    SocialStackLayout:
-                        spacing: 40
-                        Image:
-                            source: 'source/discord_icon.png'
-                            size_hint_x: None
-                            size: 40, 40
-                        Label:
-                            size_hint_x: None
-                            width: 90
-                            text: "Discord"
-                            font_size: 32
-                            bold: True
-                            color: 1,1,1,1
+#                SocialButton:
+#                    id: btn_disc
+#                    on_press: self.open_link_discord()
+#                    pos_hint: {'center_x': 0.3 , 'center_y': .5}
+#                    canvas.before:
+#                        Color:
+#                            rgba: (114/255,137/255,218/255,1)
+#                        RoundedRectangle:
+#                            pos: self.pos
+#                            size: self.size
+#                            radius: [16,]
+#                    SocialStackLayout:
+#                        spacing: 40
+#                        Image:
+#                            source: 'source/discord_icon.png'
+#                            size_hint_x: None
+#                            size: 40, 40
+#                        Label:
+#                            size_hint_x: None
+#                            width: 90
+#                            text: "Discord"
+#                            font_size: 32
+#                            bold: True
+#                            color: 1,1,1,1
                 SocialButton:
                     id: btn_inst
                     on_press: self.open_link_inst()
