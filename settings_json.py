@@ -33,25 +33,64 @@ settings_json = json.dumps([
         'key': 'bg_path'
     },
     {
+        'type': 'title',
+        'title': 'Buttons'
+    },
+    {
+        'type': 'string',
+        'title': 'Yandex',
+        'desc': 'Insert link to Yandex',
+        'section': 'Buttons',
+        'key': 'yandex_link'
+    },
+    {
+        'type': 'bool',
+        'title': 'Visible',
+        # 'desc': 'turn off button',
+        'section': 'Buttons',
+        'key': 'yandex_hide'
+    },
+    {
+        'type': 'string',
+        'title': '2GIS',
+        'desc': 'Insert link to 2GIS',
+        'section': 'Buttons',
+        'key': 'twogis_link'
+    },
+    {
+        'type': 'bool',
+        'title': 'Visible',
+        # 'desc': 'turn off button',
+        'section': 'Buttons',
+        'key': 'twogis_hide'
+    },
+    {
         'type': 'string',
         'title': 'Instagram',
         'desc': 'Insert link to Instagram page',
-        'section': 'Main',
+        'section': 'Buttons',
         'key': 'insta_link'
+    },
+    {
+        'type': 'bool',
+        'title': 'Visible',
+        # 'desc': 'turn off button',
+        'section': 'Buttons',
+        'key': 'insta_hide'
     },
     {
         'type': 'string',
         'title': 'VKontakte',
         'desc': 'Insert link to VKontakte page',
-        'section': 'Main',
+        'section': 'Buttons',
         'key': 'vk_link'
     },
     {
-        'type': 'string',
-        'title': 'Discord',
-        'desc': 'Insert link to Discord',
-        'section': 'Main',
-        'key': 'disc_link'
+        'type': 'bool',
+        'title': 'Visible',
+        # 'desc': 'turn off button',
+        'section': 'Buttons',
+        'key': 'vk_hide'
     },
 
 ])

@@ -40,14 +40,18 @@
                 valign: 'middle'
             BoxLayout:
                 size_hint_y: 0.3
-                spacing: 50
-                padding: [0,40,0,40]
-                Widget:
-                    size_hint_x: .1
+                spacing: 30
+                padding: [10,40,10,40]
+                orientation: 'horizontal'
+#                Widget:
+#                    size_hint_x: .1
                 SocialButton:
-                    id: btn_disc
-                    on_press: self.open_link_disc()
+                    id: btn_yandex
+                    on_press: self.open_link(self.yandex_link)
                     pos_hint: {'center_x': 0.3 , 'center_y': .5}
+                    opacity: self.hide_btn('Buttons', 'yandex_hide')[0]
+                    disabled: self.hide_btn('Buttons', 'yandex_hide')[1]
+                    size_hint_x: self.hide_btn('Buttons', 'yandex_hide')[2]
                     canvas.before:
                         Color:
                             rgba: (114/255,137/255,218/255,1)
@@ -66,16 +70,55 @@
                         Label:
                             size_hint_x: None
                             width: self.width
-                            text: "Discord"
+                            text: "Yandex"
                             font_size: 32
                             bold: True
                             color: 1,1,1,1
                         Widget:
                             size_hint_x: .12
+#                Widget:
+#                    id: left_spacing
+#                    size_hint_x: .1
                 SocialButton:
-                    id: btn_inst
-                    on_press: self.open_link_inst()
+                    id: btn_twogis
+                    on_press: self.open_link(self.twogis_link)
                     pos_hint: {'center_x': 0.3 , 'center_y': .5}
+                    opacity: self.hide_btn('Buttons', 'twogis_hide')[0]
+                    disabled: self.hide_btn('Buttons', 'twogis_hide')[1]
+                    size_hint_x: self.hide_btn('Buttons', 'twogis_hide')[2]
+                    canvas.before:
+                        Color:
+                            rgba: (114/255,137/255,218/255,1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [16,]
+                    SocialStackLayout:
+                        spacing: 40
+                        Widget:
+                            size_hint_x: .08
+                        Image:
+                            source: 'source/discord_icon.png'
+                            size_hint_x: None
+                            size: 40, self.height
+                        Label:
+                            size_hint_x: None
+                            width: self.width
+                            text: "2GIS"
+                            font_size: 32
+                            bold: True
+                            color: 1,1,1,1
+                        Widget:
+                            size_hint_x: .12
+#                Widget:
+#                    size_hint_x: .1
+                SocialButton:
+                    id: btn_insta
+                    on_press: self.open_link(self.insta_link)
+                    pos_hint: {'center_x': 0.3 , 'center_y': .5}
+                    opacity: self.hide_btn('Buttons', 'insta_hide')[0]
+                    disabled: self.hide_btn('Buttons', 'insta_hide')[1]
+                    size_hint_x: self.hide_btn('Buttons', 'insta_hide')[2]
                     canvas.before:
                         Color:
                             rgba: (240/255,0/255,115/255,1)
@@ -100,10 +143,16 @@
                             color: 1,1,1,1
                         Widget:
                             size_hint_x: .12
+#                Widget:
+#                    id: right_spacing
+#                    size_hint_x: .1
                 SocialButton:
                     id: btn_vk
-                    on_press: self.open_link_vk()
+                    on_press: self.open_link(self.vk_link)
                     pos_hint: {'center_x': 0.7 , 'center_y': .5}
+                    opacity: self.hide_btn('Buttons', 'vk_hide')[0]
+                    disabled: self.hide_btn('Buttons', 'vk_hide')[1]
+                    size_hint_x: self.hide_btn('Buttons', 'vk_hide')[2]
                     canvas.before:
                         Color:
                             rgba: (24/255,119/255,242/255,1)
@@ -130,19 +179,17 @@
                             color: 1,1,1,1
                         Widget:
                             size_hint_x: .12
-                Widget:
-                    size_hint_x: .1
+#                Widget:
+#                    size_hint_x: .1
 
 
 <SocialButton>:
     markup: True
     background_color: 1,1,1,0
     background_normal: ''
-    size_hint: 1 , None
+    size_hint_y: None
     size: self.texture_size
     height: 100
-    valign: 'top'
-    halign: 'right'
 <SocialStackLayout@BoxLayout>:
     orientation: 'horizontal'
     pos: self.parent.pos
