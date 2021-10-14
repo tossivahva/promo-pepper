@@ -1,21 +1,21 @@
 import kivy
 import os, sys
-import pathlib
 import webbrowser
-from kivy.config import Config
-
-Config.set('kivy', 'window_icon', 'source/gob_icon.ico')
-Config.set('graphics', 'window_state', 'maximized')
-
 from kivy.app import App
+from kivy.core.window import Window
+from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from settings_json import settings_json
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.resources import resource_add_path, resource_find
+from kivy.uix.popup import Popup
 
 kivy.require('2.0.0')
+
+Config.set('graphics', 'window_state', 'maximized')
+Config.set('kivy', 'window_icon', 'source/gob_icon.ico')
 
 
 def return_settings_json(key, value):
@@ -42,6 +42,18 @@ class LabelWithConfig(Label):
         return self.text
 
 
+class PopupLabel(Label):
+    pass
+
+
+class PopupButtonClose(Button):
+    pass
+
+
+class PopupButtonContinue(Button):
+    pass
+
+
 # Connect buttons to links
 class SocialButton(Button):
 
@@ -53,7 +65,6 @@ class SocialButton(Button):
         self.twogis_link = return_settings_json('Buttons', 'twogis_link')
 
     def hide_btn(self, key, value):
-        self.value = value
         self.value = return_settings_json(key, value)
         if self.value == '1':
             self.opacity = 1
@@ -88,11 +99,33 @@ class Interface(BoxLayout):
 
 class MainApp(App):
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     def build(self):
         # Load config, remove default
         self.title = 'GoB Promo'
         self.use_kivy_settings = False
+        Window.bind(on_request_close=self.on_request_close)
         return Interface()
+
+    def on_request_close(self, *args):
+        self.textpopup()
+        return True
+
+    def textpopup(self, title='', text='Вы уверены что хотите закрыть акцию?'):
+        box = BoxLayout(orientation='vertical', padding=(30, 15, 30, 15))
+        box.add_widget(PopupLabel(text=text))
+        close_button = PopupButtonClose(text='Закрыть')
+        continue_button = PopupButtonContinue(text='Назад')
+        btn_box = BoxLayout(orientation='horizontal', spacing=15)
+        btn_box.add_widget(continue_button)
+        btn_box.add_widget(close_button)
+        box.add_widget(btn_box)
+        popup = Popup(title=title, content=box, size_hint=(None, None), size=(700, 500), separator_height=0)
+        close_button.bind(on_press=self.stop)
+        continue_button.bind(on_press=popup.dismiss)
+        popup.open()
 
     # Custom settings
     def build_config(self, config):

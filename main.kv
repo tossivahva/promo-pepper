@@ -40,11 +40,12 @@
                 valign: 'middle'
             BoxLayout:
                 size_hint_y: 0.3
-                spacing: 30
-                padding: [10,40,10,40]
+                padding: [30,]
+                spacing: '15sp'
+                halign: 'center'
                 orientation: 'horizontal'
 #                Widget:
-#                    size_hint_x: .1
+#                    size_hint_x: .01
                 SocialButton:
                     id: btn_yandex
                     on_press: self.open_link(self.yandex_link)
@@ -54,17 +55,17 @@
                     size_hint_x: self.hide_btn('Buttons', 'yandex_hide')[2]
                     canvas.before:
                         Color:
-                            rgba: (114/255,137/255,218/255,1)
+                            rgba: (255/255,255/255,255/255,1)
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
                             radius: [16,]
                     SocialStackLayout:
-                        spacing: 40
+                        spacing: 16
                         Widget:
-                            size_hint_x: .08
+                            size_hint_x: .09
                         Image:
-                            source: 'source/discord_icon.png'
+                            source: 'source/yandex_icon.png'
                             size_hint_x: None
                             size: 40, self.height
                         Label:
@@ -73,12 +74,9 @@
                             text: "Yandex"
                             font_size: 32
                             bold: True
-                            color: 1,1,1,1
+                            color: 0,0,0,1
                         Widget:
-                            size_hint_x: .12
-#                Widget:
-#                    id: left_spacing
-#                    size_hint_x: .1
+                            size_hint_x: .11
                 SocialButton:
                     id: btn_twogis
                     on_press: self.open_link(self.twogis_link)
@@ -88,30 +86,19 @@
                     size_hint_x: self.hide_btn('Buttons', 'twogis_hide')[2]
                     canvas.before:
                         Color:
-                            rgba: (114/255,137/255,218/255,1)
+                            rgba: (163/255,198/255,38/255,1)
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
                             radius: [16,]
                     SocialStackLayout:
-                        spacing: 40
                         Widget:
-                            size_hint_x: .08
+                            size_hint_x: .1
                         Image:
-                            source: 'source/discord_icon.png'
+                            source: 'source/2gis_icon.png'
                             size_hint_x: None
-                            size: 40, self.height
-                        Label:
-                            size_hint_x: None
-                            width: self.width
-                            text: "2GIS"
-                            font_size: 32
-                            bold: True
-                            color: 1,1,1,1
                         Widget:
-                            size_hint_x: .12
-#                Widget:
-#                    size_hint_x: .1
+                            size_hint_x: .1
                 SocialButton:
                     id: btn_insta
                     on_press: self.open_link(self.insta_link)
@@ -129,7 +116,7 @@
                     SocialStackLayout:
                         spacing: 40
                         Widget:
-                            size_hint_x: .08
+                            size_hint_x: .09
                         Image:
                             source: 'source/instagram_icon.png'
                             size_hint_x: None
@@ -142,10 +129,7 @@
                             bold: True
                             color: 1,1,1,1
                         Widget:
-                            size_hint_x: .12
-#                Widget:
-#                    id: right_spacing
-#                    size_hint_x: .1
+                            size_hint_x: .11
                 SocialButton:
                     id: btn_vk
                     on_press: self.open_link(self.vk_link)
@@ -163,7 +147,7 @@
                     SocialStackLayout:
                         spacing: 40
                         Widget:
-                            size_hint_x: .08
+                            size_hint_x: .09
                         Image:
                             source: 'source/vkontakte_icon.png'
                             size_hint_x: None
@@ -178,10 +162,33 @@
                             font_size: 32
                             color: 1,1,1,1
                         Widget:
-                            size_hint_x: .12
+                            size_hint_x: .11
 #                Widget:
-#                    size_hint_x: .1
+#                    size_hint_x: .01
+<PopupLabel>
+    text_size: self.size
+    padding_x: 24
+    padding_y: 16
+    size: self.texture_size
+    valign: 'middle'
+    halign: 'center'
+    font_size: '19sp'
 
+<PopupButtonClose>:
+    markup: True
+    background_color: 70/255,70/255,70/255,.8
+    background_normal: ''
+    size_hint: None, None
+    size: 300, 100
+    font_size: '17sp'
+
+<PopupButtonContinue>:
+    markup: True
+    background_color: 240 / 255, 0 / 255, 115 / 255, .8
+    background_normal: ''
+    size_hint: None, None
+    size: 300, 100
+    font_size: '17sp'
 
 <SocialButton>:
     markup: True
@@ -190,6 +197,7 @@
     size_hint_y: None
     size: self.texture_size
     height: 100
+
 <SocialStackLayout@BoxLayout>:
     orientation: 'horizontal'
     pos: self.parent.pos
